@@ -1,6 +1,7 @@
 import { useEffect, useRef, useCallback } from 'react'
 import { useStore } from '@/store'
 import { executeCode } from '@/api'
+import { mockExecuteCode } from '@/api/mockExecute'
 import toast from 'react-hot-toast'
 
 export function useExecution() {
@@ -11,7 +12,15 @@ export function useExecution() {
     setLoading(true)
     setError(null)
     try {
-      const result = await executeCode({ code, language: 'java' })
+      // Try real backend first; fall back to mock demo mode if backend is offline
+      let result
+      try {
+        result = await executeCode({ code, language: 'java' })
+      } catch {
+        console.warn('Backend unavailable — switching to demo mode')
+        result = await mockExecuteCode(code)
+        toast('Running in demo mode 🎭 (backend offline)', { icon: '🎭' })
+      }
       setTrace(result.trace)
       if (result.trace.hasError) {
         toast.error('Execution error — check the console panel')
@@ -19,7 +28,7 @@ export function useExecution() {
         toast.success(`Traced ${result.trace.totalSteps} steps!`)
       }
     } catch (err: any) {
-      const msg = err?.response?.data?.message ?? err?.message ?? 'Execution failed'
+      const msg = err?.message ?? 'Execution failed'
       setError(msg)
       toast.error(msg)
     } finally {
