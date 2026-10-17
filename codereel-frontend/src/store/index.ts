@@ -34,27 +34,26 @@ interface ExecutionState {
   reset: () => void;
 }
 
-const DEFAULT_CODE = `import java.util.*;
+const DEFAULT_CODE = `import java.util.Stack;
 
 public class Main {
     public static void main(String[] args) {
-        // Try sorting an array!
-        int[] arr = {64, 34, 25, 12, 22, 11, 90};
-        bubbleSort(arr);
-        System.out.println(Arrays.toString(arr));
-    }
+        Stack<Integer> stack = new Stack<>();
 
-    static void bubbleSort(int[] arr) {
-        int n = arr.length;
-        for (int i = 0; i < n - 1; i++) {
-            for (int j = 0; j < n - i - 1; j++) {
-                if (arr[j] > arr[j + 1]) {
-                    int temp = arr[j];
-                    arr[j] = arr[j + 1];
-                    arr[j + 1] = temp;
-                }
-            }
-        }
+        stack.push(10);   // Place 10 on stack
+        stack.push(20);   // Place 20 on stack
+        stack.push(30);   // Place 30 on stack
+        stack.push(40);   // Place 40 on stack
+
+        System.out.println("Top: " + stack.peek());
+
+        stack.pop();      // Remove top (40)
+        stack.pop();      // Remove top (30)
+
+        stack.push(99);   // Push new value
+
+        System.out.println("Final top: " + stack.peek());
+        System.out.println("Size: " + stack.size());
     }
 }
 `
