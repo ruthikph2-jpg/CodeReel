@@ -8,7 +8,7 @@ const FEATURES = [
   { icon: SplitSquareHorizontal,  title: 'TwinRun',                  desc: 'Compare two executions side by side to spot the difference instantly.' },
   { icon: Bug,                    title: 'Bug Replay',               desc: 'Rewind to the exact moment something went wrong.' },
   { icon: Share2,                 title: 'Shareable Lessons',        desc: 'Create and share interactive coding walkthroughs with a single link.' },
-  { icon: Film,                   title: 'Predict Mode',             desc: 'Guess the next variable value before it's revealed — active learning.' },
+  { icon: Film,                   title: 'Predict Mode',             desc: "Guess the next variable value before it's revealed — active learning." },
 ]
 
 export function LandingPage() {

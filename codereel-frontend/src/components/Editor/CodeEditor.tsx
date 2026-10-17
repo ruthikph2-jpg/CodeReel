@@ -1,6 +1,5 @@
-import Editor from '@monaco-editor/react'
+import Editor, { type OnMount } from '@monaco-editor/react'
 import { useStore } from '@/store'
-import type { editor } from 'monaco-editor'
 import { useRef, useCallback } from 'react'
 
 interface CodeEditorProps {
@@ -12,21 +11,10 @@ interface CodeEditorProps {
 
 export function CodeEditor({ highlightLine, readOnly = false, value, onChange }: CodeEditorProps) {
   const { code, setCode } = useStore()
-  const editorRef = useRef<editor.IStandaloneCodeEditor | null>(null)
   const decorationsRef = useRef<string[]>([])
 
-  const handleMount = useCallback(
-    (editorInstance: editor.IStandaloneCodeEditor) => {
-      editorRef.current = editorInstance
-    },
-    []
-  )
-
-  // Highlight current execution line
-  const handleEditorDidMount = useCallback(
-    (editorInstance: editor.IStandaloneCodeEditor, monaco: typeof import('monaco-editor')) => {
-      editorRef.current = editorInstance
-
+  const handleMount: OnMount = useCallback(
+    (editorInstance, monaco) => {
       if (highlightLine != null && highlightLine > 0) {
         decorationsRef.current = editorInstance.deltaDecorations(decorationsRef.current, [
           {
