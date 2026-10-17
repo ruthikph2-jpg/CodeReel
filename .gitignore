@@ -1,0 +1,14 @@
+node_modules/
+dist/
+.env
+*.local
+target/
+*.class
+*.jar
+*.war
+.idea/
+*.iml
+.DS_Store
+Thumbs.db
+h2-data/
+*.log
