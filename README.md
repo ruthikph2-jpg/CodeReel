@@ -165,4 +165,5 @@ GitHub: [@ruthikph2-jpg](https://github.com/ruthikph2-jpg)
 
 ## 📄 License
 
-MIT License — see [LICENSE](LICENSE)
+Proprietary License — Copyright (c) 2026 **Ruthik ph**. All Rights Reserved.  
+Unauthorized copying, modification, or distribution of this software is strictly prohibited. See [LICENSE](LICENSE) for details.
